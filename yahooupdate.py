@@ -1,16 +1,13 @@
-import json
-from urllib.request import urlopen,urlretrieve
 from urllib.parse import quote
 import string
 from urllib.error import HTTPError
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import requests
 import csv
 import json
 import ssl
 import requests
-import pymongo
+
 import datetime
 import pandas as pd
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -108,7 +105,7 @@ def update_movie_OMDB(IMDB_number="tt0446029", apikey="5ab10f1c"):
     response = urlopen(url)
 
     info = json.load(response)
-    info['plot'] = Plot_to_story(info['imdbID'])
+    info['Plot'] = Plot_to_story(info['imdbID'])
     json.dumps(info)
 
     return info
